@@ -5,7 +5,7 @@ package com.ng.bigdata.util
  * @Date: 2020/9/23 15:01
  * @Desc:
  */
-object String2Util {
+object String2Utils {
   def str2Int(str: String) = {
     try{
       str.toInt
