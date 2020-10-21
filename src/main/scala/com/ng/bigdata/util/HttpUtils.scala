@@ -4,7 +4,6 @@ import org.apache.http.client.methods.{CloseableHttpResponse, HttpGet}
 import org.apache.http.impl.client.{CloseableHttpClient, HttpClients}
 import org.apache.http.util.EntityUtils
 
-import scala.collection.mutable.ArrayBuffer
 
 /**
  * @User: kaisy

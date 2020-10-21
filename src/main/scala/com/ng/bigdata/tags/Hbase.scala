@@ -9,7 +9,7 @@ import org.apache.spark.sql.SparkSession
 /**
  * @User: kaisy
  * @Date: 2020/9/25 14:57
- * @Desc:
+ * @Desc: 测试
  */
 object Hbase {
   def main(args: Array[String]): Unit = {

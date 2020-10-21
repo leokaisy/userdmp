@@ -58,6 +58,13 @@ object TagContextV2 {
       //      val circleTags: ArrayBuffer[(String, Int)] = TagUtils.getCircleTags(row._2)
       // tip 合并标签
       val combineTags: ArrayBuffer[(String, Int)] = adTags ++ appTags ++ locationTags ++ keyWordTags ++ deviceTags
+
+      // todo 合并所有相同用户ID
+      // 构建点集合的点的时候，我们的点是字符串，那么这里我们取HashCode值，使之将字符串转换成Int类型，
+      // 这样点才能使用，因为字符串无法构建图
+      // 现在点的问题解决了，但是每个点（用户ID），都会携带者属性，这个数据是标签，那么如果有三个ID
+      // 就会有三份属性，而属性是标签，标签就重复了三份，这样数据不准确，如何去重，保证三个ID其中只有
+      // 一个ID携带标签，剩余其他不携带
       userId.map(t => {
         if (userId.head.equals(t)) {
           (t.hashCode.toLong, combineTags)
@@ -82,7 +89,7 @@ object TagContextV2 {
     vertices.join(vd).map {
       case (uid, (id, tags)) => (id, tags)
     }
-      .reduceByKey((r1, r2) => {
+      .reduceByKey((r1 , r2) => {
         (r1 ++ r2)
           .groupBy(_._1)
           .mapValues(_.map(_._2).sum)
